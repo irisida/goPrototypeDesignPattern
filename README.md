@@ -14,3 +14,7 @@ Here we can see an example of the shallow copying issue and how a deep copy prev
 We can add deep copy methods to do our handling for us, this is cleaner than the first solution above.
 
 ![](/assets/prototype2.png)
+
+We can further expand on this with serlialization
+
+![](/assets/prototype3.png)

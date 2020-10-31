@@ -1,19 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"bytes"
+	"encoding/gob"
+	"fmt"
+)
 
 type Address struct {
 	HouseNumber, Street, Area, City, Country string
-}
-
-func (a *Address) DeepCopy() *Address {
-	return &Address{
-		a.HouseNumber,
-		a.Street,
-		a.Area,
-		a.City,
-		a.Country,
-	}
 }
 
 type Person struct {
@@ -23,10 +17,17 @@ type Person struct {
 }
 
 func (p *Person) DeepCopy() *Person {
-	c := *p
-	c.Address = p.Address.DeepCopy()
-	copy(c.Contacts, p.Contacts)
-	return &c
+	b := bytes.Buffer{}
+	e := gob.NewEncoder(&b)
+	_ = e.Encode(p)
+
+	//fmt.Println(b.String()) // debugging purposes
+
+	d := gob.NewDecoder(&b)
+	res := Person{}
+	_ = d.Decode(&res)
+
+	return &res
 }
 
 func (p *Person) PrintDetails() {
