@@ -18,3 +18,7 @@ We can add deep copy methods to do our handling for us, this is cleaner than the
 We can further expand on this with serlialization
 
 ![](/assets/prototype3.png)
+
+We can then use the factory methods to generate convenience techniques for object creation.
+
+![](/assets/prototype4.png)
